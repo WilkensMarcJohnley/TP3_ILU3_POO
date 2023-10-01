@@ -22,7 +22,7 @@ public class Parade extends Bataille{
 			return "Roue de secours";
 		}
 		
-		case ACCIDENT: return "Réparations";
+		case ACCIDENT: return "Réparation";
 		default: return "Fin de limite de vitese";
 	}
 	
