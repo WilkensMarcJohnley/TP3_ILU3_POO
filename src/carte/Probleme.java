@@ -27,4 +27,14 @@ public abstract class Probleme extends Carte{
 		}
 		
 	}
+	
+	public boolean equals(Object obj) {
+		if(obj instanceof Probleme) {
+			if(super.equals(obj)) {
+				Probleme new_obj= (Probleme) obj;
+				return type==new_obj.getType();
+			}
+		}
+		return false;
+	}
 }

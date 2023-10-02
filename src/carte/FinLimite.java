@@ -6,5 +6,10 @@ public class FinLimite extends Carte{
 		super(nombre);
 		// TODO Auto-generated constructor stub
 	}
+	
+public String toString() {
+		
+		return null;
+	}
 
 }

@@ -7,4 +7,11 @@ public abstract class Carte {
 		this.nombre = nombre;
 	}
 	
+	public boolean equals(Object obj) {
+		return obj.getClass()==getClass();
+	}
+
+	public int getNombre() {
+		return nombre;
+	}
 }

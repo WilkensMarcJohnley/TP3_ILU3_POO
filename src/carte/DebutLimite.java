@@ -7,4 +7,8 @@ public class DebutLimite extends Carte{
 		// TODO Auto-generated constructor stub
 	}
 
+	public String toString() {
+		
+		return null;
+	}
 }

@@ -7,4 +7,8 @@ public abstract class Limite extends Carte {
 		// TODO Auto-generated constructor stub
 	}
 	
+	public boolean equals(Object obj) {
+		return super.equals(obj);
+	}
+	
 }
