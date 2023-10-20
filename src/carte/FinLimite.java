@@ -9,7 +9,7 @@ public class FinLimite extends Carte{
 	
 public String toString() {
 		
-		return null;
+		return "Fin Limites";
 	}
 
 }

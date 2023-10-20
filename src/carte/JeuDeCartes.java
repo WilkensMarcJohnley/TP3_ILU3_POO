@@ -25,7 +25,7 @@ public class JeuDeCartes {
 		return listeCartes;
 	}
 	
-	private void checkCount() {
+	private void checkCount(List<Carte> liste) {
 		
 	}
 	

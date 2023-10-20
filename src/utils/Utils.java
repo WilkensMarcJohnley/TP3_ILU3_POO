@@ -8,7 +8,6 @@ import carte.*;
 
 public class Utils {
 	public static <T> T extraire_V1(List<T> carte) {
-		//System.out.println("size liste: " + carte.size());
 		int random= (int)(Math.random()*(carte.size()));
 		T extraction=carte.get(random);
 		carte.remove(random);
@@ -40,7 +39,7 @@ public class Utils {
 			T next=it.next();
 			result= result && (Collections.frequency(li1, next)==Collections.frequency(li2, next));
 		}
-		return result;
+		return result && li1.size()==li2.size();
 	}
 	
 	public static <T> List<T> rassembler(List<T> carte){

@@ -9,6 +9,6 @@ public class DebutLimite extends Carte{
 
 	public String toString() {
 		
-		return null;
+		return "Debut Limite";
 	}
 }

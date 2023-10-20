@@ -8,9 +8,13 @@ public class Borne extends Carte {
 		// TODO Auto-generated constructor stub
 	}
 	
+public int getKm() {
+		return km;
+	}
+
 public String toString() {
 		
-		return null;
+		return "Borne";
 	}
 
 public boolean equals(Object obj) {
