@@ -2,6 +2,9 @@ package carte;
 
 import java.util.Iterator;
 import java.util.List;
+
+import utils.Utils;
+
 import java.util.ArrayList;
 
 public class JeuDeCartes {
@@ -15,11 +18,15 @@ public class JeuDeCartes {
 				listeCartes.add(carte);
 			}
 		}
+		listeCartes=Utils.melanger(listeCartes);
 	}
 
 	public List<Carte> getListeCartes() {
 		return listeCartes;
 	}
 	
+	private void checkCount() {
+		
+	}
 	
 }

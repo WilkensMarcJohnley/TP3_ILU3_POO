@@ -4,8 +4,9 @@ import java.util.List;
 
 import carte.*;
 import carte.Probleme.Type;
-
-public class Test {
+import java.util.ArrayList;
+import utils.*
+;public class Test {
 	
 	public void testlisteCartes(List<Carte> liste) {
 		System.out.println(liste);
@@ -21,9 +22,6 @@ public class Test {
 		return nb;
 	}
 	
-	public void checkCount() {
-		
-	}
 	
 	public static void main(String[] args) {
 		Carte carte1= new Attaque(Type.ACCIDENT,3); 
@@ -44,9 +42,21 @@ public class Test {
 //		System.out.println(carte6.equals(carte7));
 //		System.out.println(carte5.equals(carte6));
 		
-		Test test= new Test();
-		JeuDeCartes jeu= new JeuDeCartes(carte1,carte2,carte3,carte4,carte5,carte6,carte7);
-		test.testlisteCartes(jeu.getListeCartes());
+//		Test test= new Test();
+		JeuDeCartes jeu= new JeuDeCartes(carte1,carte3,carte2,carte4,carte5,carte6,carte4,carte7);
+//		test.testlisteCartes(jeu.getListeCartes());
+		
+		//JeuDeCartes jeu = new JeuDeCartes();
+		List<Carte> listeCarteNonMelangee = jeu.getListeCartes();
+		List<Carte> listeCartes = new ArrayList<>(listeCarteNonMelangee);
+		System.out.println(listeCartes);
+		//listeCartes = Utils.melanger(listeCartes);
+		System.out.println(listeCartes);
+		System.out.println("liste mélangée sans erreur ? "
+		+ Utils.verifierMelange(listeCarteNonMelangee, listeCartes));
+		listeCartes = Utils.rassembler(listeCartes);
+		System.out.println(listeCartes);
+		System.out.println("liste rassemblée sans erreur ? " + Utils.verifierRassemblement(listeCartes));
 		
 	}
 }
