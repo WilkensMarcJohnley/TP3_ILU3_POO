@@ -1,6 +1,6 @@
 package carte;
 
-public class Botte extends Probleme {
+public class Botte extends Probleme implements Comparable<Botte> {
 
 	public Botte(Type t, int nombre) {
 		super(t, nombre);
@@ -26,6 +26,10 @@ public class Botte extends Probleme {
 		default: return null;
 	}
 	
+	}
+	@Override
+	public int compareTo(Botte toCompare) {
+		return (getType()).compareTo(toCompare.getType());
 	}
 	
 }

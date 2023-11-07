@@ -1,31 +1,37 @@
 package jeu;
 
 import java.util.List;
+import java.util.ArrayList;
 import java.util.ListIterator;
 import java.util.NavigableSet;
+import java.util.TreeSet;
 
+import carte.Attaque;
 import carte.Bataille;
 import carte.Borne;
 import carte.Botte;
 import carte.Carte;
+import carte.FinLimite;
 import carte.Limite;
+import carte.Parade;
+import carte.Probleme;
+import carte.Probleme.Type;
 
-public class Joueur {
+public class Joueur{
 	private String nom;
-	private NavigableSet<Botte> pileBotte;//il faut un comparateur
-	private List<Bataille> pileBataille; // il faut aussi faire des initialisations avec vide
-	private List<Limite> pileLimite;
-	private List<Borne> pileBorne;
-	private MainAsListe main;
+	private NavigableSet<Botte> pileBotte = new TreeSet<>();//il faut un comparateur
+	private List<Bataille> pileBataille= new ArrayList<>(); // il faut aussi faire des initialisations avec vide
+	private List<Limite> pileLimite=new ArrayList<>();
+	private List<Borne> pileBorne =new ArrayList<>();
+	private MainAsListe main = new MainAsListe(new ArrayList<>());
 	
 	public Joueur(String nom, NavigableSet<Botte> pileBotte, List<Bataille> pileBataille, List<Limite> pileLimite,
-			List<Borne> pileBorne, MainAsListe main) {
+			List<Borne> pileBorne) {
 		this.nom = nom;
 		this.pileBotte = pileBotte;
 		this.pileBataille = pileBataille;
 		this.pileLimite = pileLimite;
 		this.pileBorne = pileBorne;
-		this.main=main;
 	}
 
 	public String getNom() {
@@ -51,6 +57,7 @@ public class Joueur {
 	public MainAsListe getMain() {
 		return main;
 	}
+
 
 	@Override
 	public String toString() {
@@ -88,6 +95,40 @@ public class Joueur {
 		return somme;
 	}
 
+
+	public int getLimite() {
+		Carte feu= new Botte(Type.FEU,0);
+		boolean aux= (main.getMain()).contains(feu);
+		if(pileLimite.isEmpty() || ((Carte)pileLimite.get(0) instanceof FinLimite)|| aux) {
+			return 200;
+		}
+		return 50;
+	}
 	
+	private boolean fct_aux() {
+		Probleme carte= pileBataille.get(0);
+		if(carte instanceof Attaque) {
+			if(carte.getType()== Type.FEU) {
+				return false;
+			}
+			Carte botte= new Botte(carte.getType(),0);
+			return main.getMain().contains(botte);
+		}
+		return false;
+	}
+	
+	public boolean estBloque() {
+		Carte feu= new Botte(Type.FEU,0);
+		Carte parade= new Parade(Type.FEU,0);
+		Carte attaque= new Attaque(Type.FEU,0);
+		boolean prioritaire= main.getMain().contains(feu);
+		if((pileBataille.isEmpty() && prioritaire) || (pileBataille.get(0).equals(parade)) 
+				|| ((Carte)pileBataille.get(0) instanceof Parade && prioritaire)
+				|| (pileBataille.get(0).equals(attaque) && prioritaire)
+				|| (fct_aux() && prioritaire)) {
+			return false;
+		}
+		return true;
+	}
 	
 }

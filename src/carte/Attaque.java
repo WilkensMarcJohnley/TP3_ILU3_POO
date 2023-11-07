@@ -4,7 +4,6 @@ public class Attaque extends Bataille {
 
 	public Attaque(Type t, int nombre) {
 		super(t, nombre);
-		// TODO Auto-generated constructor stub
 	}
 	
 	public String toString() {

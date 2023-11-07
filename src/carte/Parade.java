@@ -4,7 +4,6 @@ public class Parade extends Bataille{
 
 	public Parade(Type t, int nombre) {
 		super(t, nombre);
-		// TODO Auto-generated constructor stub
 	}
 
 	public String toString() {
@@ -23,6 +22,7 @@ public class Parade extends Bataille{
 		}
 		
 		case ACCIDENT: return "Réparation";
+		
 		default: return "Fin de limite de vitese";
 	}
 	
