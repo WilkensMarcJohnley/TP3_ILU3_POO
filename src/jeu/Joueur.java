@@ -2,8 +2,10 @@ package jeu;
 
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.ListIterator;
 import java.util.NavigableSet;
+import java.util.Set;
 import java.util.TreeSet;
 
 import carte.Attaque;
@@ -69,7 +71,7 @@ public class Joueur{
 		boolean result= false;
 		if(obj instanceof Joueur) {
 			Joueur newJoueur= (Joueur) obj;
-			result=toString().equals(newJoueur.toString());
+			result=nom.equals(newJoueur.toString());
 		}
 		return result;
 	}
@@ -91,14 +93,15 @@ public class Joueur{
 	public int getKM() {
 		int somme=0;
 		for(ListIterator<Borne> it=pileBorne.listIterator(); it.hasNext();) {
-			somme+=it.next().getKm();		}
+			somme+=it.next().getKm();
+			}
 		return somme;
 	}
 
 
 	public int getLimite() {
 		Carte feu= new Botte(Type.FEU,0);
-		boolean aux= (main.getMain()).contains(feu);
+		boolean aux= (pileBotte).contains(feu);
 		if(pileLimite.isEmpty() || ((Carte)pileLimite.get(0) instanceof FinLimite)|| aux) {
 			return 200;
 		}
@@ -121,7 +124,7 @@ public class Joueur{
 		Carte feu= new Botte(Type.FEU,0);
 		Carte parade= new Parade(Type.FEU,0);
 		Carte attaque= new Attaque(Type.FEU,0);
-		boolean prioritaire= main.getMain().contains(feu);
+		boolean prioritaire= pileBotte.contains(feu);
 		if((pileBataille.isEmpty() && prioritaire) || (pileBataille.get(0).equals(parade)) 
 				|| ((Carte)pileBataille.get(0) instanceof Parade && prioritaire)
 				|| (pileBataille.get(0).equals(attaque) && prioritaire)
@@ -130,5 +133,31 @@ public class Joueur{
 		}
 		return true;
 	}
+	
+	//TP4
+	public Set<Coup> coupsPossibles(List<Joueur> participants) {
+		Set<Coup> ensCoup= new HashSet<>();
+		for(ListIterator<Carte> it= main.iterateur();it.hasNext();) {
+			Carte auxCarte= it.next();
+			for(Joueur j: participants) {
+				Coup auxCoup= new Coup(auxCarte,j);
+				if (auxCoup.estValide(this)) {
+					ensCoup.add(auxCoup);
+				}
+			}
+		}
+		return ensCoup;
+	}
+	
+	public Set<Coup> coupsParDefault(List<Joueur> participants) {
+		Set<Coup> ensCoup=coupsPossibles(participants);
+		for(Coup coup: ensCoup) {
+			if(coup.getJoueurCible()!=null) {
+				ensCoup.remove(coup);
+			}
+		}
+		return ensCoup;
+	}
+	
 	
 }

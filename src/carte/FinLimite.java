@@ -1,6 +1,6 @@
 package carte;
 
-public class FinLimite extends Carte{
+public class FinLimite extends Limite{
 
 	public FinLimite(int nombre) {
 		super(nombre);
